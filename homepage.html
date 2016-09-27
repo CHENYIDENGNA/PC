@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>首页</title>
+	<script src="jquery.js"></script>
+	<script type="text/javascript" src="http://webapi.amap.com/maps?v=1.3&key=1da6e8bbece08bb9a7f41c4b93218470&callback=mapLoad"></script> 
+	
+
+	<style type="text/css">
+		*{
+			margin:0px;padding:0px;}
+		body{
+			font: 12px/1.5 "Microsoft YaHei","Helvetica Neue",Helvetica,STHeiTi,sans-serif;
+		}
+
+		.topmenu{
+			background: url("iamges/homepage/topmenu_b.png") repeat-x #f7f7f7;
+    		border-bottom: 1px solid #c7c7c7;
+    		color: #666;
+    		height: 32px;
+    		line-height: 32px;
+		}
+		.in{width: 1200px;margin:0 auto;}
+		.topLeft{width:196px;height: 32px;float；left;display: inline-block;}
+		.topLeft li{list-style-type: none;border: 1px solid transparent; border-bottom: none;float: left;height: 32px;margin-left: -2px;}
+		.topLeft ul li:first-child{width:111px;text-align: }
+		.topLeft ul li:last-child{width:85px;}
+		.topLeft ul li span{color: #185; font-size: 14px; padding: 0 5px;}
+		.topLeft ul li a{text-decoration: none;color:#666;display: inline-block;}
+		.topLeft ul li a:hover{border-bottom:1px solid #666;}
+		
+
+		.topRight {display: inline-block; float:right;width:524px;height: 33px;}
+		.topRight ul{list-style-type: none;}
+		.topRight ul li {float:left;border:}
+		.item {text-decoration: none;color:#666;margin:0 13px 0 12px;}
+		.item:hover{border-bottom:1px solid #666;}
+		.has_hot {width: 60px;text-align: center}
+		.sub a{ padding-bottom: 5px;text-decoration: none;color:#666;}
+		.has_hot .sub{width: 56px;display: none;}
+		.sub a:hover{border-bottom:1px solid #666;}
+		.sub span{display: inline-block;float:left;}
+		.has_hot div{display: inline-block; width: 0px;height: 0px;border:5px solid transparent;border-top-color:black;float: right;margin-top: 15px}
+
+
+		.secondmenu {width:100%;height: 80px;}
+		.secondcontainer{ width: 1200px;height: 80px;margin:0 auto;}
+		.secondLeft{float: left;}
+		.logo {display: inline-block;width: 200px;height: 80px; }
+		.secondRight{float:right;}
+		.secondRight ul li{list-style-type: none;float: left;line-height: 80px;}
+		.secondRight ul li a{   position: relative; border: 1px solid #fff; color: #666;cursor: pointer;display: inline-block; font-size: 16px;height: 40px; line-height: 40px;padding: 0 18px;text-decoration: none; vertical-align: middle;}
+		.secondRight ul li a:hover{background:#f4f4f4}
+		.label{display: inline-block;float:left;}
+
+
+/* -----------------------------------------轮播图-------------------------------------- */
+		.top_cate {width:100%;height: 340px;}
+		.top_cate_container{ width: 1200px;height: 340px;margin:0 auto;}
+		
+		.changePic{width: 1200px;height: 340px;}
+		.changeUl{ width:300px; position:relative;left: 1000px;top:-40px;}
+	    .changeUl >li {list-style-type:none; float: left;}
+	    .changeUl >li div{ width:0; height:0; border: 10px solid white;border-radius: 10px; margin-right: 5px;  }
+		.changeUl  .active { border-color:#333; }
+/* ---------------------------------------------------------------侧边菜单------------------------------------------ */
+		.top_cate_list{position: absolute;z-index: 10px; width: 1200px;top:113px;}
+		.cate_list_main{display: inline-block;width: 235px; left:-125px;float: left;}
+		.cate_list_main ul{background-image: url(images/homepage/listbackground.png)}
+		.cate_list_main li{width:; list-style-type: none;display: inline-block;border-bottom: 1px solid #9A9895;background-image: url(images/homepage/listli.png)}
+		.cate_list_main li a{text-decoration: none;display: inline-block;width: 120px;height: 84px;line-height: 84px;font-size: 16px;color:#fff;padding-left: 95px;float:left;}
+		.cate_list_main span{display: inline-block;position: relative; font-size: 24px;color: white;top:20px;left: -10px;}
+
+		.cate_list_sub{ width: 700px;display:inline-block; background: transparent;position: absolute;border: 1px solid #185;background: #F7F7F7; display: none;left: 232px;}
+		.sub_arrow{ width: 0px;  height: 0px;  border:8px solid transparent;border-right-color: white;position: absolute;top:30px;left: -16px;display: none;}
+
+
+		.for_first{padding-top: 15px;display: none; }
+		.for_first .row{display: inline-block; padding-top: 15px;}
+		.rowLeft{ display: inline-block; width: 145px; height: 18px;line-height: 18px;float: left;text-align: right; font-size: 12px;}
+		.rowRight{display: inline-block;width: 535px;height: 26px;padding-bottom:5px;border-bottom: 1px solid #F0F0F0;font-size: 12px;margin-left: 10px;}
+		.rowRight a{ text-decoration: none;color:#333;  border-left: 1px solid #E0E0E0;height: 18px;line-height: 18px; margin-left: 0; margin-bottom: 8px;padding: 0 10px; }
+		.rowRight a:hover{color:#185}
+
+		.for_second{padding-top:15px; display: none;}
+		.srowLeft{display: inline-block;width: 90px;height: 42px;line-height: 42px; text-align: right;float: left;font-size: 12px;} 
+		.srowRight{margin-left: 100px;}
+		.srowRight a{text-decoration: none; border: 1px solid #E1E1E1;color: #333;display: inline-block; font-size: 12px;width: 116px;height: 40px;line-height: 40px;margin-left: 17px;margin-bottom: 20px;text-align: center;}
+		.srowRight a:hover{border-color: #185;color: #185;}
+
+		.for_third {padding-top:27px;  display: none;}
+		.for_third a{text-decoration: none; border: 1px solid #E1E1E1;color: #333;display: inline-block;font-size: 12px; height: 40px;line-height: 40px; margin-left: 17px;margin-bottom: 20px;text-align: center;width: 116px;}
+		.for_third a:hover{border-color: #185;color: #185;};
+
+		.for_fourth {padding-top:57px;/* display: none; */}
+		.for_fourth a{display: inline-block;color:#333;border:1px solid #E1E1E1;font-size: 12px;height: 40px;line-height: 40px;margin-left: 17px;margin-bottom: 20px;text-align: center;width: 116px;text-decoration: none;}
+		.for_fourth a:hover{border-color: #185;color: #185;};
+/* --------------------------轮播图下图片----------------------------------- */
+		.top_mobil {width:1200px;height:166px;}
+		.mobile{position: relative;width: 1200px;height:166px;left:74.5px;}
+		.top_mobil_pic{width: 1200px;position: absolute;}
+		.top_mobil_pic div img{display: inline-block; border-right: 1px solid #f7f7f7; } 
+
+/* -----------------------------手机回收-------------------------- */
+		.mobile_recover,.mobile_used{width:100%;height: 369px;padding-top: 20px;}
+		.title{width: 1200px;margin:0 auto;}
+		.title h2 {display: inline-block; color: #5A5A5A; font-size: 24px;height: 48px;line-height: 48px;font-weight: bold}
+		.title a{display: inline-block;background: url(http://p1.qhmsg.com/t0142af699131aff09e.png) no-repeat right 0;color: #666;padding-right: 20px;position: relative;left: 990px;}
+
+
+		.content {width: 1200px;margin:0 auto;}
+		.content_row_left{float:left;}
+		.content_row_right{width:1000px;height: 301px;}
+		.content_row_right ul li{list-style-type: none;float: left;width: 200px;height: 301px;}
+		.content_row_right ul li a{text-decoration:none;width: 198px;height: 301px;text-align: center;vertical-align: middle;}
+		.content_row_right ul li a img{width: 79px;height: 160px;}
+		.p-img{padding-top: 32px;width: 198px;height: 198px;} 
+		.p-name{width: 199px;height: 32px;font-size: 16px;color:#666;}
+
+
+		.mobile_used .content_row_right ul li a img{width: 144px;height: 160px;}
+		.p-price {width: 199px;height: 22px;font-size: 16px;color: red;}
+
+		.service .tittle{background:#eeebeb;}
+		.content-left{width: 890px;float: left;}
+		.shop-list{float:left;}
+		.left-list{width: 300px;float: left;}
+		.area-city,.area-county{display: inline-block; width: 122px;padding:4px 7px 4px 13px;border:1px solid black;margin-right: 6px;cursor: pointer;float: left;}
+		.area-city{ float: left;}
+		.left-list{display: inline-block; font-size: 14px;line-height: 32px}
+
+		.right-list{width: 590px;float: left;}
+		.right-list input {
+		    background: transparent;
+		    border: 1;
+		    color: #666;
+		    float: left;
+		    font-size: 14px;
+		    height: 20px;
+		    line-height: 20px;
+		    padding: 10px 4px 10px 13px;
+		    width: 449px;
+		}
+		.right-list button {display: inline-block; background: #185;
+		    border: 0;
+		    color: #fff;
+		    cursor: pointer;
+		    float: left;
+		    font-size: 18px;
+		    height: 40px;
+		    line-height: 40px;
+		    text-align: center;
+		    text-indent: 0;
+    		width: 120px;
+		}
+
+		.shop-wrap-head{width: 888px;height: 42px;float: left;border: 1px solid #D6D6D6;color: #666;background: #D6D6D6;}
+		.sort-type{float: left;}
+		.sort-type li{list-style-type: none;float: left;border-color: #D6D6D6;background: #D6D6D6; border-right:1px solid #F5F5F5}
+		.sort-type li a {display: inline-block;text-decoration: none;width: 120px;height: 42px;line-height: 42px;text-align:center;font-size: 14px;color: #666;}
+		.filter-check{ width: 260px;height: 42px;line-height: 42px;float: left;background: #D6D6D6;}
+		.extra{display: inline-block;width:103px;height: 35px;margin:6px 10px 0 0;background-image: url(images/homepage/map-icon.png) no-repeat 10px 0;float: right}
+		.extra a{display: inline-block;text-decoration: none;text-align: center; color: #666; width: 58px;height: 28px;padding:0 10px 0px 35px;border:1px solid black;line-height: 28px;background-color: white;}
+
+
+		.map{width:890px;height: 551px top: 120px;position: absolute;;z-index: 10;background-image: gray;position: absolute;z-index: 101;left:240px;display: none;}
+		.map_head{width: 890px;height: 32px;background-color: #D6D6D6;color:white;border-bottom: 1px solid #e1e1e1; }
+
+		.map h3 {
+		    color: white;
+		    font-size: 14px;
+		    font-weight: 700;
+		    height: 45px;
+		    line-height: 45px;
+		    margin: 0 1px;
+		    text-indent: 14px;
+		    display: inline-block;
+		}
+		.map_head span{
+			width: 32px;
+			height: 32px;
+			line-height: 32px;
+			font-size: 18px;
+			float: right;
+			cursor: pointer;
+		}
+		.map_body{
+			width: 890px;height: 519px;
+		}
+		.map_head{width: 890px;height: 44px;background-color: gray;}
+		.map_head p{
+			width: 890px;height: 44px;padding:10px 0px;background-color: gray;
+		}
+
+		.map_background{display:inline-block; width: 100%;height:100%;background-color: #000;z-index: 100;opacity: 0.6;    position: fixed;display: none;}
+		.shop_list{float: left;}
+		.list_item{
+			width: 890px;
+			height: 92px;
+    		padding: 20px 0;
+    		border-bottom: 1px solid #DFDFE1;
+    		color: #888;
+    		position: relative;
+		}
+		.pic{display: inline-block; width: 90px;height: 90px;border: 1px solid #e6e6e6;margin-right: 10px;float: left;}
+		.pic img{width: 90px;height: 90px;}
+		.ctn{display: inline-block;width: 788px;height: 99px;}
+		h3 {height: 37px;line-height: 37px;}
+		h3 a{text-decoration: none;color:#666;}
+		h3 div{display: inline-block;width: 170px;height:31px;margin-left: 8px;}
+		.desc,.addr{width:390px;line-height: 31px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;font-size: 14px;}
+		.addr{width:390px;line-height: 31px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;font-size: 14px;}
+		.shop_score{position:absolute; ;width: 160px;height: 93px;top: 22px;right: 180px;}
+		.shop_score span{display: inline-block;width: ;height: 20px;font-size: 14px;}
+
+		.shop_rq{font-size: 12px;}
+		.into_shop{text-decoration: none;background: #fff;border: 1px solid #185;
+		    color: #185;
+		    /* display: none; */
+		    float: right;
+		    font-size: 18px;
+		    font-weight: 400;
+		    height: 40px;
+		    position: absolute;
+		    line-height: 40px;
+		    top: 45px;
+		    left: 720px;
+    		width: 140px;
+    		text-align: center;
+		}
+		.shop_wrap_foot{text-align: right;padding:10px 0;}
+		.paging{
+			display: inline-block;
+			text-decoration: none;
+			text-align: center;
+			background: #fff;
+		    border: 1px solid #D6D6D6;
+		    border-radius: 0;
+		    color: #999;
+		    height: 42px;
+		    line-height: 42px;
+		    margin-left: 3px;
+		    padding: 0;
+		    width: 42px;
+		    cursor: pointer;
+
+		}
+		.OA{
+			display: inline-block;
+			text-decoration: none;
+			text-align: center;
+		    background: #FC6621;
+   			border: 1px solid #FC6621;
+   			color:#fff;
+   			height: 42px;
+    		line-height: 42px;
+    		padding: 0;
+    		width: 42px
+   		 }
+		.uppage, .nextpage{
+			display: inline-block;
+			text-decoration: none;
+			text-align: center;
+			background: #fff;
+		    border: 1px solid #D6D6D6;
+		    border-radius: 0;
+		    color: #999;
+		    height: 42px;
+		    line-height: 42px;
+		    margin-left: 3px;
+		    padding: 0;
+		    width: 62px;
+		    cursor: pointer;
+		}
+
+
+		.content-right{display: inline-block;width: 268px;height: 693px;margin-left: 30px;margin-top: 82px;border:1px solid #D6D6D6;}
+		.right-title{
+			background: #F7F7F7;
+		    color: #333;
+		    font-size: 20px;
+		    height: 42px;
+		    line-height: 42px;
+		    margin: 0;
+		    padding: 0;
+		    text-align: center;
+		}
+		.ctn-list{padding:20px 0;border-top: 1px solid #D6D6D6;border-bottom: 1px solid #D6D6D6;}
+		.ctn-num{
+			width: 20px;
+			height: 20px;border:2px solid red;border-radius: 20px;
+			text-align: center;
+			display: inline-block;
+			float: left;
+			margin-top: 12.5px;
+			margin-left: 10px;
+		}
+		.ctn-pic {display: inline-block;float: left;}
+		.ctn-pic img{width: 50px;height: 50px;}
+		.ctn-name {display: inline-block;width: 150px;height: 51px;}
+		.ctn-name h3{
+			height: 26px;
+		    line-height: 26px;
+		    margin-top: 4px;
+		    overflow: hidden;
+		}
+
+
+
+
+		
+
+		
+		
+
+	</style>
+</head>
+<body>
+	<div class="map_background"></div>
+	<div class="topmenu">
+		<div class="in">
+			<div class="topLeft">
+				<ul>
+					<li>
+						<span class="top_menu_city">深圳</span>
+						<a href="" class="top_menu_city_change" >[切换城市]</a>
+					</li>
+					<li><a href="" >同城帮首页</a></li>
+				</ul>
+			</div>
+			<div class="topRight">
+				<ul>
+					<li><a href="" class="item">登录</a></li>
+					<li><a href="" class="item">注册</a></li>
+					<li><a href="" class="item">我的订单</a></li>
+					<li><a href="" class="item">客服电话：400-399-300</a></li>
+					<li class="has_hot">
+						<span>客户服务</span>
+						<p class="sub">
+							<a href="" >帮助中心</a>
+							<a href="" >维修付款</a>
+						</p>
+					</li>
+					<li><a href="" class="item">论坛</a></li>
+					<li><a href="" class="item">投诉建议</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<div class="secondmenu">
+		<div class="secondcontainer">
+			<div class="secondLeft">
+				<a href="#" class="logo"><img src="images/homepage/logo.png" alt=""></a>
+			</div>
+			<div class="secondRight">
+				<ul>
+					<li><a href="">二手良品</a><image src="images/homepage/lable.png"></image></li>
+					<li><a href="">手机回收</a></li>
+					<li><a href="">手机维修</a></li>
+					<li><a href="">电脑维修</a></li>
+					<li><a href="">以旧换新</a></li>
+					<li><a href="">手机租用</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	
+	<div class="top_cate">
+		<div class="top_cate_container">
+			<div class="top_cate_pic">
+				<img src="" class="changePic">
+				<ul class="changeUl"></ul>
+			</div>
+			<div class="top_cate_list">
+				<ul class="cate_list_main">
+					<li class="list"><a href="">修手机/pad</a><span>></span></li>
+					<li class="list"><a href="">修电脑</a><span>></span></li>
+					<li class="list"><a href="">卖手机</a><span>></span></li>
+					<li class="list"><a href="">买二手机</a><span>></span></li>
+				</ul>
+				<div class="cate_list_sub">
+					<div class="sub_item for_first">
+						<div class="row">
+							<div class="rowLeft">屏幕<span>></span></div>
+							<div class="rowRight">
+								<a href="">屏碎，但正常显示</a>
+								<a href="">屏幕不显示或花屏</a>
+								<a href="">屏幕触摸失灵</a>
+								<a href="">pad更换屏幕</a>
+							</div>
+						</div>
+						<div class="row">
+							<div class="rowLeft">电池/充电/开机<span>></span></div>
+							<div class="rowRight">
+								<a href="">电池问题</a>
+								<a href="">不开机</a>
+								<a href="">充电（链接）问题</a>
+							</div>
+						</div>
+						<div class="row">
+							<div class="rowLeft">按键<span>></span></div>
+							<div class="rowRight">
+								<a href="">开机键失灵</a>
+								<a href="">home键失灵</a>
+								<a href="">音量键失灵</a>
+							</div>
+						</div>
+						<div class="row">
+							<div class="rowLeft">声音/震动<span>></span></div>
+							<div class="rowRight">
+								<a href="">听筒问题</a>
+								<a href="">麦克风问题</a>
+								<a href="">外放扬声器问题</a>
+								<a href="">耳机插口故障</a>
+								<a href="">震动功能失效</a>
+							</div>
+						</div>
+						<div class="row">
+							<div class="rowLeft">拍照/录像<span>></span></div>
+							<div class="rowRight">
+								<a href="">后镜头无法拍照</a>
+								<a href="">前镜头无法拍照</a>
+							</div>
+						</div>
+						<div class="row">
+							<div class="rowLeft">外壳/边框<span>></span></div>
+							<div class="rowRight">
+								<a href="">中框变形</a>
+								<a href="">手机换彩壳</a>
+							</div>
+						</div>
+						<div class="row">
+							<div class="rowLeft">进水入液/主板故障<span>></span></div>
+							<div class="rowRight">
+								<a href="">进水入液</a>
+								<a href="">手机主板故障</a>
+							</div>
+						</div>
+						<div class="row">
+							<div class="rowLeft">其他故障<span>></span></div>
+							<div class="rowRight">
+								<a href="">软件升级/刷机</a>
+								<a href="">WiFi功能故障</a>
+							</div>
+						</div>
+						<div class="row">
+							<div class="rowLeft">个性化服务<span>></span></div>
+							<div class="rowRight">
+								<a href="">点亮iphone logo</a>
+								<a href="">蓝光护眼钢化膜</a>
+								<a href="">极透高清钢化膜</a>
+								<a href="">爱机深度清洁</a>
+								<a href="">手机换彩壳</a>
+							</div>
+						</div></div>
+					<div class="sub_item for_second" id="second">
+						<div class="srow">
+							<div class="srowLeft">热门问题 :</div>
+							<div class="srowRight">
+								<a href="">系统重装</a>
+								<a href="">电脑清灰</a>
+								<a href="">数据恢复</a>
+								<a href="">系统故障修复</a>
+								<a href="">驱动安装</a>
+								<a href="">游戏加速</a>
+							</div>
+						</div>
+						<div class="srow">
+							<div class="srowLeft">其它问题 :</div>
+							<div class="srowRight">
+								<a href="">开机加速</a>
+								<a href="">网速优化</a>
+								<a href="">蓝屏死机</a>
+								<a href="">电脑没声音</a>
+								<a href="">路由器调试</a>
+								<a href="">无法上网</a>
+								<a href="">家庭局域网</a>
+								<a href="">更换风扇</a>
+								<a href="">病毒查杀</a>
+							</div>
+						</div></div>
+					<div class="sub_item for_third"></div>
+					<div class="sub_item for_fourth">
+					</div>
+					<div class="sub_arrow"></div>
+				</div>
+
+
+
+			</div>
+		</div>	
+	</div>
+	<div class="top_mobil">
+		<div class="mobile">
+			<div class="top_mobil_pic"></div>
+		</div>	
+	</div>
+
+	<div class="mobile_recover">
+		<div class="title">
+			<h2>热门手机回收</h2>
+			<a href="">查看更多</a>
+		</div>
+		<div class="content">
+			<div class="content_row">
+				<div class="content_row_left">
+					<img src="images/homepage/recover_left.png" alt="">
+				</div>
+				<div class="content_row_right">
+					<ul>
+						<li>
+							<a href="">
+								<div class="p-img"><img src="images/homepage/recover_1.jpg" alt=""></div>
+								<div class="p-name">苹果iphone6</div>
+							</a>
+						</li>
+						<li>
+							<a href="">
+								<div class="p-img"><img src="images/homepage/recover_2.jpg" alt=""></div>
+								<div class="p-name">苹果iphone6</div>
+							</a>
+						</li>
+						<li>
+							<a href="">
+								<div class="p-img"><img src="images/homepage/recover_3.jpg" alt=""></div>
+								<div class="p-name">苹果iphone6</div>
+							</a>
+						</li>
+						<li>
+							<a href="">
+								<div class="p-img"><img src="images/homepage/recover_4.jpg" alt=""></div>
+								<div class="p-name">苹果iphone6</div>
+							</a>
+						</li>
+						<!-- <li>
+							<a href="">
+								<div class="p-img"><img src="images/homepage/recover_5.jpg" alt=""></div>
+								<div class="p-name">苹果iphone6</div>
+							</a>
+						</li> -->
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="mobile_used">
+		<div class="title">
+			<h2>二手良品精选</h2>
+			<a href="">查看更多</a>
+		</div>
+		<div class="content">
+			<div class="content_row">
+				<div class="content_row_left">
+					<img src="images/homepage/used_left.png" alt="">
+				</div>
+				<div class="content_row_right">
+					<ul>
+						<li>
+							<a href="">
+								<div class="p-img"><img src="images/homepage/used_1.jpg" alt=""></div>
+								<div class="p-name">苹果iphone6s</div>
+								<div class="p-price">￥4090</div>
+							</a>
+						</li>
+						<li>
+							<a href="">
+								<div class="p-img"><img src="images/homepage/used_2.jpg" alt=""></div>
+								<div class="p-name">苹果iphone5s</div>
+								<div class="p-price">￥1450</div>
+							</a>
+						</li>
+						<li>
+							<a href="">
+								<div class="p-img"><img src="images/homepage/used_3.png" alt=""></div>
+								<div class="p-name">小米 4c</div>
+								<div class="p-price">￥799</div>
+							</a>
+						</li>
+						<li>
+							<a href="">
+								<div class="p-img"><img src="images/homepage/used_4.jpg" alt=""></div>
+								<div class="p-name">苹果 iphone 5</div>
+								<div class="p-price">￥1080</div>
+
+							</a>
+						</li>
+						<!-- <li>
+							<a href="">
+								<div class="p-img"><img src="images/homepage/used_5.png" alt=""></div>
+								<div class="p-name">三星 note 5</div>
+								<div class="p-price">￥2680</div>
+							</a>
+						</li>  -->
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="sercive">
+		<div class="title">
+			<h2>到店维修</h2>
+		</div>
+		<div class=""></div>
+		<div class="content">
+			<div class="content-left">
+				<div class="ctn-row">
+					<div class="shop-list">
+						<div class="left-list">
+							<div class="area-city">
+								<span>深圳</span>
+								<span><img src="images/homepage/arrow.jpg" alt=""></span>
+							</div>
+							<div class="area-county">
+								<span>区县</span>
+								<span><img src="images/homepage/arrow.jpg" alt=""></span>
+							</div>
+							<div class=""></div>
+						</div>
+						<div class="right-list">
+								<input type="text">
+								<button class="btn">搜索</button>
+						</div>
+					</div>
+				</div>
+				<div class="shop-wrap">
+					<div class="shop-wrap-head">
+							<ul class="sort-type">
+								<li><a href="">默认排序</a></li>
+								<li><a href="">按成交量</a></li>
+								<li><a href="">按人气</a></li>
+							</ul>
+							<div class="filter-check">
+								<label for="">
+									<input type="checkbox">先行赔付
+								</label>
+							</div>
+							<div class="extra">
+								<a href="">地图模式</a>
+							</div>
+							<div class="map">
+								<div class="map_head">
+									<h3>地图模式</h3>
+									<span class="delet">x</span>
+								</div>
+								<div class="map_body" id="map_container"></div>
+								<div class="map_foot">
+									<p class="pages"></p>
+								</div>
+							</div>
+					</div>
+					<div class="shop-wrap-body">
+						<div class="shop_list">
+						<div class="list_item">
+							<div class="pic">
+								<a href="">
+									<img src="images/homepage/list-item1.gif" alt="">
+								</a>
+							</div>
+							<div class="ctn">
+								<h3>
+									<a href="">深圳市联捷电子</a>
+									<div class="shop_grad">
+										店铺等级
+										<a href="">
+											<span></span>
+											<span></span>
+										</a>
+									</div>
+								</h3>
+								<div class="desc">
+									主营：电脑维修/笔记本清灰与维修/打印机维修/显示器维修/手机维修
+								</div>
+								<div class="addr">
+									地址：深圳龙华新区观澜街道大和路电子市场1FN01
+								</div>
+								<div class="shop_score">
+									<div class="shop-pf">
+										<span></span>先行赔付
+									</div>
+									<div class="shop_rz">
+										<span></span>同城帮认证
+									</div>
+									<div class="shop_rq">
+										<span></span>
+									</div>
+								</div>
+								<a href="" class="into_shop">进入店铺</a>
+							</div>
+						</div>
+					</div>
+					</div>
+					<div class="shop_wrap_foot">
+					</div>
+				</div>			
+			</div>
+			<div class="content-right">
+					<h3 class="right-title">商家好评榜</h3>
+					<div class="ctn-list-item">
+					<div class="ctn-list">
+						<div class="ctn-num">1</div>
+						<div class="ctn-pic">
+							<a href=""><img src="images/homepage/ctn-right_1.jpg" alt=""></a>	
+						</div>
+						<div class="ctn-name">
+							<h3><a href="">能帮科技</a></h3>
+							<p>1121条评论</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<script type="text/javascript">
+//---------------------------下拉菜单-------------------------------
+		var has_hot =document.getElementsByClassName("has_hot")[0];
+		var sub =document.getElementsByClassName("sub")[0];
+		has_hot.onmouseover = function(){
+				sub.style.display = "block";
+				has_hot.style.border = "1px solid black";
+		}
+		has_hot.onmouseout = function(){
+			sub.style.display = "none";
+			has_hot.style.border = "none";
+		}
+
+
+//----------------轮播---------------
+		var oDiv = document.getElementsByClassName('top_cate_pic')[0];
+		var oImg = oDiv.getElementsByClassName('changePic')[0];
+		var oUl = oDiv.getElementsByClassName('changeUl')[0];
+		var adiv = oUl.getElementsByTagName('div');
+
+		var arrUrl =["images/homepage/changePic1.jpg","images/homepage/changePic2.jpg","images/homepage/changePic3.jpg","images/homepage/changePic4.jpg","images/homepage/changePic5.jpg"]
+		var num =0;
+		var timer = null;
+
+		for(var i=0;i<arrUrl.length;i++){
+			var div = document.createElement("div");
+			var li = document.createElement("li");
+			li.appendChild(div);
+			oUl.appendChild(li);
+		};
+		function fnTab() {
+			oImg.src = arrUrl[num];
+			for (var i = 0; i < adiv.length; i++) {
+				adiv[i].className = '';
+			}
+			adiv[num].className = 'active';
+		};
+		fnTab();
+		function autoPlay(){
+			timer = setInterval(function(){
+				num++;
+				num%=arrUrl.length;
+				fnTab();
+			},2000)
+		}
+		autoPlay();
+
+		for (var i = 0; i < adiv.length; i++) {
+			adiv[i].index = i; // 索引值
+			adiv[i].onmouseover = function() {
+				num = this.index;
+				fnTab();
+			};
+		};
+
+//--------------创建右边菜单弹出菜单----
+		var arrThird = ["苹果","三星","小米","华为","步步高","OPPO","HTC","魅族","索尼","联想","酷派","中兴","诺基亚","朵唯","小米","苹果","三星","小米","苹果","乐视","LG","黑莓","TCL","锤子","一加","美图秀秀","微软","金立","360手机","摩托罗拉"]
+       var odiv =document.getElementsByClassName("for_third")[0];
+       for(var i =0;i<arrThird.length;i++){
+       	var oa = document.createElement("a");
+       	oa.setAttribute("href","#");
+       	oa.innerHTML = arrThird[i];
+       	odiv.appendChild(oa);
+       }
+
+		var arrFourth = ["苹果","三星","小米","华为","HTC","酷派","索尼","魅族","联想","努比亚","锤子","vivo","OPPO","乐视","360手机","美图秀秀","微软","黑莓","戴尔"]
+       	var oDiv =document.getElementsByClassName("for_fourth")[0];
+       	for(var i =0;i<arrFourth.length;i++){
+	       	var oa = document.createElement("a");
+	       	oa.setAttribute("href","#");
+	       	oa.innerHTML = arrFourth[i];
+	       	oDiv.appendChild(oa);
+	    }
+
+
+//-------------左侧菜单-------移入移出事件--------------
+		var oli = document.getElementsByClassName("list");
+		var listdiv =document.getElementsByClassName("sub_item");
+		var cate_list_sub = document.getElementsByClassName("cate_list_sub")[0];
+		var sub_arrow = document.getElementsByClassName("sub_arrow")[0];
+		var sub_arrowArr = ["30px","114px","198px","282px"];
+		var timer = null;
+		for(var i=0;i<oli.length;i++){
+			(function(k){
+				oli[k].onmouseover = function() {
+					cate_list_sub.style.display = "block"
+					listdiv[k].style.display = "block";
+					sub_arrow.style.display = "block";
+					sub_arrow.style.top =sub_arrowArr[k];
+					console.log(k);
+				};
+				oli[k].onmouseout = function() {
+						cate_list_sub.style.display = "none"
+						listdiv[k].style.display = "none";
+						sub_arrow.style.display = "none";	
+				};
+				/*cate_list_sub.onmouseover = function(){
+					clearTimeout(timer);
+				};
+				cate_list_sub.onmouseout = function(){
+					cate_list_sub.style.display = "none"
+					listdiv[k].style.display = "none";
+					sub_arrow.style.display = "none";
+				};*/
+			})(i)
+
+			
+		
+
+		}
+
+//----------------top-mobil-pic--------------------
+		var odiv =document.getElementsByClassName("top_mobil_pic")[0];
+		var arr_top_mobil_pic =["images/homepage/mobil_1.jpg","images/homepage/mobil_2.jpg","images/homepage/mobil_3.jpg","images/homepage/mobil_4.jpg"];
+		var Div = document.createElement("div");
+		odiv.appendChild(Div);
+		for(var i=0;i<arr_top_mobil_pic.length;i++){
+			var oimg = document.createElement("img")
+			oimg.src = arr_top_mobil_pic[i]
+			Div.appendChild(oimg);
+			
+		}
+
+//------------------载入地图----------------
+		function mapLoad(){
+			var map = new AMap.Map('map_container', {
+	        resizeEnable: true,
+	        zoom:11,
+	        center: [116.397428, 39.90923]
+    		});
+		}
+		//点击x地图消失
+		var ospan = $(".delet");
+		var map= $(".map");
+		var map_background =$(".map_background");
+		var extra = $(".extra").click(function(e){
+			e.preventDefault();
+			map.css("display","block");
+			map_background.css("display","block");
+		})
+		ospan.click(function(){
+			map.css("display","none")
+			;map_background.css("display","none");
+		})
+
+
+//-----------------------创建商家列表-----------------
+//
+//
+		/*var shop_list = $(".shop_list");
+		var list_item =$("<div></div>").attr("class","list_item").appendTo(shop_list)
+		var ODiv1 = $("<div></div").appendTo(list_item).attr("class","pic");
+		var oa =$("<a >").appendTo(ODiv1);
+		var oimg =$("<img/>").attr("src","images/homepage/list-item2.gif").appendTo(oa);
+
+		var ctn =$("<div></div").appendTo(list_item).attr("class","ctn");
+			var oh3 = $("<h3></h3>").appendTo(ctn);
+				var oa1 = $('<a href=""/>').appendTo(oh3).text("深圳联想笔记本售后");
+					var oDiv3 = $("<div></div>").appendTo(oh3).attr("class","shop_grad").text("店铺等级");
+			var desc = $("<div></div").attr("class","desc").appendTo(ctn).text("主营：联想 、think笔记本电脑维修; 品牌笔记本电脑精修快修。");
+			var addr =$("<div</div>").attr("class","addr").appendTo(ctn).text("地址：深圳福田区华强北华强广场四楼Q4C042室");
+			var shop_score =$("<div></div").attr("class","shop_score").appendTo(ctn);
+				var shop_pf = $("<div></div>").attr("class","shop_pf").appendTo(shop_score).html("<span></span>先行赔付");
+				var shop_rz = $("<div></div>").attr("class","shop_rz").appendTo(shop_score).html("<span></span>同城帮认证");
+				var shop_rq= $("<div></div>").attr("class","shop_rq").appendTo(shop_score).html("<span></span>人气：");
+		var into_shop = $('<a href=""/>').attr("class","into_shop").appendTo(ctn).text("进入店铺");	*/
+
+
+//----------------从服务器获取数据-----------
+		
+			function createShop(arrData){
+				for(var i=0;i<arrData.length;i++){
+					var shop_list = $(".shop_list");
+					var list_item =$("<div></div>").attr("class","list_item").appendTo(shop_list)
+					var ODiv1 = $("<div></div").appendTo(list_item).attr("class","pic");
+					var oa =$("<a >").appendTo(ODiv1);
+					var oimg =$("<img/>").attr("src",arrData[i].shop_ico).appendTo(oa);
+
+					var ctn =$("<div></div").appendTo(list_item).attr("class","ctn");
+						var oh3 = $("<h3></h3>").appendTo(ctn);
+							var oa1 = $("<a href=''></a>").appendTo(oh3).text(arrData.shop_name);
+								var oDiv3 = $("<div></div>").appendTo(oh3).attr("class","shop_grad").text("店铺等级");
+						var desc = $("<div></div").attr("class","desc").appendTo(ctn).text("主营："+arrData[i].shop_desc);
+						var addr =$("<div</div>").attr("class","addr").appendTo(ctn).text("地址："+arrData[i].addr);
+						var shop_score =$("<div></div").attr("class","shop_score").appendTo(ctn);
+							var shop_pf = $("<div></div>").attr("class","shop_pf").appendTo(shop_score).html("<span></span>先行赔付");
+							var shop_rz = $("<div></div>").attr("class","shop_rz").appendTo(shop_score).html("<span></span>同城帮认证");
+							var shop_rq= $("<div></div>").attr("class","shop_rq").appendTo(shop_score)
+							var span_rq=$("<span></span>").appendTo(shop_rq).text("人气："+arrData[i].shop_visit+"次访问");
+					var into_shop = $('<a href=""/>').attr("class","into_shop").appendTo(ctn).text("进入店铺");	
+				}
+			}
+
+
+	</script>
+	<script type="text/javascript">
+	/*var arrData=[];
+		for(var k=1;k<4;k++){
+			var oscript = $("<script/>")
+			$("body").append(oscript);
+			oscript.attr("src","http://192.168.11.213:8080/bang360/"+k+".json?callback=?",getData);
+			function getData(data){
+				arrData=arrData.concat(data.shop_data);
+				console.log(arrData);
+				return arrData;
+			}
+		};*/
+		var arr=[];
+		function getData(data){
+			arr=data.shop_data;
+			//createShop(arrData);
+			//var arr = arrData.slice(0,5);
+			//console.log(arr);
+			//根据每页显示商家数量创建分页数
+			var k =5;
+			var pageNum =Math.ceil(arr.length/5);//分页数
+			//根据页数创建按钮
+			var uppage = $("<span></span").text("<<上一页").attr("class","uppage").appendTo($(".shop_wrap_foot"))
+			for(var i=1;i<arr.length/5+1;i++){
+				var oa = $("<a href=''></a>").text(i).attr("class","paging").appendTo($(".shop_wrap_foot"))
+				};
+			var nextpage = $("<span></span").text("下一页>>").attr("class","nextpage").appendTo($(".shop_wrap_foot"));
+			var num = 0;
+			$(".paging").each(function(index,elem){
+				$(this).click(function(e){
+					e.preventDefault();
+					num =index;
+					$(".shop_wrap_foot a").each(function(index,elem){
+						$(this).attr("class","paging")
+					});
+					$(this).attr("class","OA");
+					var arrData = arr.slice(index*k,(index+1)*k);
+					var shop_list =$(".shop_list").html("");
+					createShop(arrData);
+				});
+
+				
+			})
+			$(".uppage").click(function(){
+				console.log(num);
+				console.log(index);
+				(function(k){
+					$(".paging")[k-1].click(function(e){
+						e.preventDefault();
+						num =index;
+						$(".shop_wrap_foot a").each(function(index,elem){
+							$(this).attr("class","paging")
+						});
+						$(this).attr("class","OA");
+						var arrData = arr.slice(index*k,(index+1)*k);
+						var shop_list =$(".shop_list").html("");
+						createShop(arrData);
+					});
+				})(num);
+				console.log(num)
+			})
+
+			$(".nextpage").click(function(){
+				console.log(num);
+				console.log(index);
+				(function(k){
+					$(".paging")[k+1].click(function(e){
+						e.preventDefault();
+						
+						$(".shop_wrap_foot a").each(function(index,elem){
+							$(this).attr("class","paging")
+						});
+						$(this).attr("class","OA");
+						var arrData = arr.slice(index*k,(index+1)*k);
+						var shop_list =$(".shop_list").html("");
+						createShop(arrData);
+					});
+				})(num);
+				console.log(num)
+			})
+
+			function mapLoad(){
+				var map = new AMap.Map('map_container', {
+		        resizeEnable: true,
+		        zoom:11,
+		        center: [116.397428, 39.90923]
+	    		});
+	    		for(var i=0;i<arrData.length;i++){
+					var marker = new AMap.Marker({
+						position: [arrData[i].map_longitude,arrData[i].map_latitude]
+						map: map
+					})
+	    		}
+	    		
+			}
+
+
+		/*	$(".nextpage").click(function(){
+				console.log(num);
+				num =num+1;
+				$(".shop_wrap_foot a").each(function(index, elem) {
+					$(this).attr("class", "paging")
+				});
+				$(".shop_wrap_foot a")[num].attr("class", "OA");
+				var arrData = arr.slice(num * k, (num + 1) * k);
+				var shop_list = $(".shop_list").html("");
+				createShop(arrData);
+			})*/
+		};
+		function fn (k){
+			(function(k){
+					$(".paging")[k+1].click(function(e){
+						e.preventDefault();
+						num =k;
+						$(".shop_wrap_foot a").each(function(index,elem){
+							$(this).attr("class","paging")
+						});
+						$(this).attr("class","OA");
+						var arrData = arr.slice(index*k,(index+1)*k);
+						var shop_list =$(".shop_list").html("");
+						createShop(arrData);
+					});
+			})(num);
+		}
+
+
+		
+		
+		
+	</script>
+	<script src="http://192.168.11.213:8080/bang360/6.json?callback=?",getData></script> 
+	
+</body>
+</html>
